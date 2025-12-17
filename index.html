@@ -1,371 +1,438 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <link rel="icon" type="image/png" href="assets/icon_3.png">
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="assets/icon_3.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nilesh Kumar – Senior Cloud Engineer</title>
+  <meta name="description" content="Senior Cloud Engineer specializing in Azure-native, event-driven systems." />
 
-    <title>Nilesh Kumar | Portfolio</title>
-    <meta name="description" content="Portfolio website of Nilesh Kumar showcasing projects, skills, and experience." />
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
 
-    <!-- Google Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
+  <style>
+    /* =========================
+       RESET + THEME
+       ========================= */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
 
-    <!-- Main Styles -->
-    <link rel="stylesheet" href="style.css">
+    :root {
+      --bg: #ffffff;
+      --bg-alt: #f5f7fb;
+      --text: #0f172a;
+      --muted: #475569;
+      --primary: #6366f1;
+      --border: #e5e7eb;
+      --radius: 14px;
+    }
+
+    :root.dark {
+      --bg: #0b1020;
+      --bg-alt: #111633;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: #1f2937;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: background .3s ease, color .3s ease;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* =========================
+       LAYOUT
+       ========================= */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, .7);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+    }
+
+    .dark header {
+      background: rgba(11, 16, 32, .7);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.25rem;
+      align-items: center;
+    }
+
+    .btn {
+      padding: .55rem .9rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      cursor: pointer;
+      font-size: .9rem;
+    }
+
+    .btn.primary {
+      background: var(--primary);
+      color: #fff;
+      border-color: transparent;
+    }
+
+    section {
+      padding: 5rem 0;
+    }
+
+    /* =========================
+       HERO
+       ========================= */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 260px;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .hero-profile {
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-profile img {
+      width: 220px;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid var(--bg);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      background: var(--bg-alt);
+    }
+
+    .hero-content h1 {
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      letter-spacing: -.03em;
+      line-height: 1.1;
+    }
+
+    .hero-content p {
+      max-width: 650px;
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+
+    .hero-actions {
+      margin-top: 2rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+    }
+
+    /* =========================
+       PROJECTS
+       ========================= */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .tags {
+      display: flex;
+      gap: .5rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .tag {
+      font-size: .75rem;
+      padding: .25rem .6rem;
+      border-radius: 999px;
+      background: rgba(99, 102, 241, .12);
+      color: var(--primary);
+    }
+
+    .card-links {
+      display: flex;
+      gap: .75rem;
+      margin-top: 1.25rem;
+    }
+
+    .card-links a {
+      font-size: .85rem;
+      padding: .4rem .8rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+    }
+
+    .card-links a.primary {
+      background: var(--primary);
+      color: #fff;
+      border-color: transparent;
+    }
+
+    /* =========================
+       ABOUT + SKILLS
+       ========================= */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem;
+    }
+
+    /* =========================
+       CONTACT – EXPANDABLE FIELDS
+       ========================= */
+    input,
+    textarea {
+      transition: all .25s ease;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    input:focus {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      border-color: var(--primary);
+      outline: none;
+    }
+
+    textarea {
+      min-height: 80px;
+    }
+
+    textarea:focus {
+      min-height: 140px;
+      border-color: var(--primary);
+      outline: none;
+    }
+
+    /* =========================
+       FOOTER
+       ========================= */
+    footer {
+      padding: 2.5rem 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    @media (max-width: 768px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <main class="container">
+  <header>
+    <div class="container nav">
+      <strong>Nilesh Kumar</strong>
+      <div class="nav-links">
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="assets\Resume.pdf" download class="download-btn"> Resume </a>
+        <button class="btn" id="themeToggle">🌙</button>
+      </div>
+    </div>
+  </header>
 
-        <!-- Header / Intro -->
-        <header>
-            <div class="intro">
-                <h1>Nilesh Kumar</h1>
-                WIP : Portfolio under construction.
-                <p>
-                    Cloud-savvy Software Engineer with expertise in Azure-native development, full-stack web
-                    applications, and automation using Python and PowerShell. Proven ability to architect scalable,
-                    event-driven systems and enforce cloud governance through policy and monitoring frameworks. Strong
-                    collaborator with a passion for clean code and continuous improvement
-                </p>
-            </div>
+  <main class="container">
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Hi, I'm Nilesh Kumar.<br />Senior Cloud Engineer.</h1>
+        <p>
+          Cloud-savvy software engineer specializing in Azure-native development,
+          event-driven architectures, governance automation, and full-stack systems.
+        </p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn primary">View Projects</a>
+          <a href="#contact" class="btn">Get in Touch</a>
+        </div>
+      </div>
 
-            <img class="profile-photo" src="assets/profile.jpg" alt="Profile photo" />
+      <div class="hero-profile">
+        <img src="assets/profile.jpg" alt="Nilesh Kumar profile photo" />
+      </div>
+    </section>
 
-            <div class="contact">
-                <a href="https://www.google.com/maps/search/?api=1&query=Nagpur%2C+India"
-                    style="display: block; text-decoration: none; color: inherit;">
-                    📍 Nagpur, India
-                </a>
-                <a href="mailto:nk1880571@gmail.com" style="text-decoration: none; color: inherit;">
-                    <div>✉️ nk1880571@gmail.com</div>
-                </a>
-                <a href="https://www.linkedin.com/in/nilesh-kumar-665613212/"
-                    style="text-decoration: none; color: inherit;">
-                    <div>🔗 linkedin.com/in/nileshkumar</div>
-                </a>
-                <a href="https://github.com/Nilesh-Kumar-1" style="text-decoration: none; color: inherit;">
-                    <div>💻 github.com/nileshkumar</div>
-                </a>
-            </div>
-        </header>
+    <section id="about">
+      <div class="about-grid">
+        <div>
+          <h2>About Me</h2>
+          <p>
+            Senior Cloud Engineer at LTIMindtree with hands-on experience building scalable
+            Azure-native systems, automation frameworks, and observability platforms.
+          </p>
+        </div>
+        <div>
+          <h2>Skills</h2>
+          <div class="skills">
+            <span class="tag">Azure Functions</span>
+            <span class="tag">Service Bus</span>
+            <span class="tag">Cosmos DB</span>
+            <span class="tag">Python</span>
+            <span class="tag">PowerShell</span>
+            <span class="tag">Angular</span>
+            <span class="tag">Django REST</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <!-- Projects -->
-        <section>
-            <h2>Projects</h2>
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="projects-grid">
+        <div class="card">
+          <h3>Enforcement Framework</h3>
+          <p>Event-driven Azure Functions framework enforcing governance using Service Bus and Cosmos DB.</p>
+          <div class="tags"><span class="tag">Azure</span><span class="tag">Functions</span><span class="tag">Cosmos DB</span></div>
+          <div class="card-links">
+            <a href="https://github.com/nileshkumar/azure-policy-enforcement/blob/main/README.md">📘 Learn More</a>
+            <a href="#" class="primary">🚀 Live</a>
+          </div>
+        </div>
 
-            <div class="projects-grid">
-                <div class="card">
-                    <div class="card-title">Portfolio Website</div>
-                    <div class="card-subtitle">HTML · CSS · Accessibility</div>
-                    <ul>
-                        <li>Designed and built my personal portfolio website.</li>
-                        <li><strong>Role:</strong> UI design, frontend development, performance optimization.</li>
-                    </ul>
-                    <a href="#">View Project →</a>
-                </div>
+        <div class="card">
+          <h3>Cloud Monitoring Dashboard</h3>
+          <p>Monitoring solution using Application Insights, Log Analytics and Azure Workbooks.</p>
+          <div class="tags"><span class="tag">Monitoring</span><span class="tag">Azure</span></div>
+          <div class="card-links">
+            <a href="https://github.com/nileshkumar/cloud-monitoring-dashboard/blob/main/README.md">📘 Learn More</a>
+            <a href="#" class="primary">🚀 Live</a>
+          </div>
+        </div>
 
-                <div class="card">
-                    <div class="card-title">SaaS Dashboard</div>
-                    <div class="card-subtitle">React · Node.js · MongoDB</div>
-                    <ul>
-                        <li>Analytics dashboard for internal business teams.</li>
-                        <li><strong>Impact:</strong> Improved reporting efficiency and visibility.</li>
-                    </ul>
-                    <a href="#">View Project →</a>
-                </div>
+        <div class="card">
+          <h3>Internal Full‑Stack Web App</h3>
+          <p>Django REST backend with Angular frontend for internal automation workflows.</p>
+          <div class="tags"><span class="tag">Django</span><span class="tag">Angular</span></div>
+          <div class="card-links">
+            <a href="https://github.com/nileshkumar/internal-web-app/blob/main/README.md">📘 Learn More</a>
+            <a href="#" class="primary">🚀 Live</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-                <div class="card">
-                    <div class="card-title">E-commerce Platform</div>
-                    <div class="card-subtitle">Next.js · Stripe · PostgreSQL</div>
-                    <ul>
-                        <li>Implemented full checkout and payment flow.</li>
-                        <li><strong>Role:</strong> Frontend and payment workflow integration.</li>
-                    </ul>
-                    <a href="#">View Project →</a>
-                </div>
+    <section id="contact">
+      <h2>Get In Touch</h2>
+      <p style="color: var(--muted); margin-bottom: 2rem;">You can reach me directly via email or LinkedIn.</p>
 
-                <div class="card">
-                    <div class="card-title">Task Management App</div>
-                    <div class="card-subtitle">TypeScript · React · Firebase</div>
-                    <ul>
-                        <li>Real-time task collaboration application.</li>
-                        <li><strong>Focus:</strong> UX clarity and real-time synchronization.</li>
-                    </ul>
-                    <a href="#">View Project →</a>
-                </div>
-            </div>
-        </section>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;margin-bottom:3rem;">
+        <div class="card">
+          <h3>📧 Email</h3>
+          <p><strong>Nilesh Kumar</strong></p>
+          <a class="btn primary" href="mailto:nk1880571@gmail.com">Send Email</a>
+        </div>
 
-        <!-- Skills -->
-        <section>
-            <h2>Technical Skills</h2>
+        <div class="card">
+          <h3>🔗 LinkedIn</h3>
+          <p><strong>Nilesh Kumar</strong></p>
+          <a class="btn primary" href="https://www.linkedin.com/in/nilesh-kumar-665613212/" target="_blank">Connect on LinkedIn</a>
+        </div>
 
-            <div class="card">
-                <ul>
-                    <li>
-                        <strong>Languages:</strong>
-                        Python, PowerShell, TypeScript
-                    </li>
+        <div class="card">
+          <h3>🐙 GitHub</h3>
+          <p><strong>Nilesh Kumar</strong></p>
+          <a class="btn primary" href="https://github.com/Nilesh-Kumar-1" target="_blank">View GitHub</a>
+        </div>
+      </div>
+      </div>
 
-                    <li>
-                        <strong>Cloud & DevOps:</strong>
-                        Microsoft Azure (Functions, Service Bus, Cosmos DB, Event Hub, Key Vault),
-                        GitHub Actions
-                    </li>
+    </section>
+  </main>
 
-                    <li>
-                        <strong>Frameworks:</strong>
-                        Angular, Django REST Framework, BDD
-                    </li>
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Nilesh Kumar. All rights reserved.</p>
+    <p>
+      Designed & built by <strong>Nilesh Kumar</strong>.
+    </p>
+  </footer>
 
-                    <li>
-                        <strong>Monitoring & Observability:</strong>
-                        Azure Application Insights, Log Analytics, Azure Workbooks
-                    </li>
+  <script>
+    const root = document.documentElement;
+    const toggle = document.getElementById('themeToggle');
+    const saved = localStorage.getItem('theme');
+    if (saved === 'dark') root.classList.add('dark');
 
-                    <li>
-                        <strong>Testing:</strong>
-                        BDD, X-Ray
-                    </li>
+    toggle.onclick = () => {
+      root.classList.toggle('dark');
+      localStorage.setItem('theme', root.classList.contains('dark') ? 'dark' : 'light');
+    };
 
-                    <li>
-                        <strong>Version Control:</strong>
-                        Git
-                    </li>
-                </ul>
-            </div>
-        </section>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 
-
-        <!-- Experience -->
-        <section>
-            <h2>Experience</h2>
-
-            <details class="card" open>
-                <summary>Professional Experience</summary>
-
-                <!-- LTIMindtree -->
-                <div class="card" style="margin-top:1rem;">
-                    <div class="card-header">
-                        <div>
-                            <div class="card-title">Senior Cloud Engineer</div>
-                            <div class="card-subtitle">LTIMindtree · Nagpur, Maharashtra</div>
-                        </div>
-                        <div class="card-time">July 2022 – Present</div>
-                    </div>
-
-                    <ul>
-                        <li>
-                            Architected and developed an <strong>Azure Function–based enforcement and exception
-                                framework</strong> from scratch by
-                            integrating Azure Service Bus, Cosmos DB, Storage Account, and Azure Graph Explorer,
-                            reducing average story
-                            development time by <strong>20%</strong>.
-                        </li>
-                        <li>
-                            Designed and implemented an <strong>event-driven framework</strong> using Azure Functions,
-                            integrating Azure Event Hub,
-                            Stream Analytics, Service Bus, Alerts, Action Groups, and Azure Graph Explorer to trigger
-                            automated actions based on
-                            control-plane and data-plane events.
-                        </li>
-                        <li>
-                            Utilized <strong>Azure Application Insights</strong> and <strong>Log Analytics
-                                Workspace</strong> for centralized logging,
-                            simplifying issue detection and root cause analysis.
-                        </li>
-                        <li>
-                            Designed and implemented a <strong>monitoring dashboard</strong> using Azure Workbooks and
-                            Dashboards to track the health
-                            of Azure Functions and the overall Azure environment.
-                        </li>
-                        <li>
-                            Led requirement gathering and whitelisting efforts for Azure services including
-                            <strong>Azure Key Vault, Azure Digital Twins, Stack Edge, and IoT Central</strong>,
-                            collaborating with cross-functional teams.
-                        </li>
-                        <li>
-                            Developed governance enforcements using <strong>Azure Policies</strong> (Deny,
-                            DeployIfNotExists, Modify effects) and
-                            <strong>Azure Runbooks</strong> to ensure security best practices during Azure resource
-                            deployment.
-                        </li>
-                        <li>
-                            Implemented testing for enforcements using <strong>BDD framework</strong> and <strong>X-Ray
-                                testing</strong>.
-                        </li>
-                        <li>
-                            Designed and developed a <strong>full-stack internal web application</strong> using
-                            <strong>Django REST Framework</strong> (backend) and <strong>Angular</strong> (frontend).
-                        </li>
-                        <li>
-                            Presented research findings and architectural updates in weekly stakeholder meetings.
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- IIT Bhubaneswar -->
-                <div class="card">
-                    <div class="card-header">
-                        <div>
-                            <div class="card-title">Teaching Assistant</div>
-                            <div class="card-subtitle">IIT Bhubaneswar · Bhubaneswar, India</div>
-                        </div>
-                        <div class="card-time">May 2021 – May 2022</div>
-                    </div>
-
-                    <ul>
-                        <li>Assisted a class of 20 students in conducting laboratory experiments on IC engines.</li>
-                        <li>Maintained attendance records and managed daily lab session documentation.</li>
-                        <li>Designed, graded, and evaluated assignments, problem sets, and questionnaires.</li>
-                    </ul>
-                </div>
-
-            </details>
-        </section>
-
-
-        <!-- Education -->
-        <section>
-            <h2>Education</h2>
-
-            <details class="card">
-                <summary>Academic Background</summary>
-
-                <!-- M.Tech -->
-                <div class="card" style="margin-top:1rem;">
-                    <div class="card-header">
-                        <div>
-                            <div class="card-title">M.Tech in Mechanical (Thermal Science & Engineering)</div>
-                            <div class="card-subtitle">IIT Bhubaneswar University · Bhubaneswar, Odisha</div>
-                        </div>
-                        <div class="card-time">May 2022</div>
-                    </div>
-                </div>
-
-                <!-- B.Tech -->
-                <div class="card">
-                    <div class="card-header">
-                        <div>
-                            <div class="card-title">B.Tech in Mechanical Engineering</div>
-                            <div class="card-subtitle">
-                                Shri Shankaracharya Group of Institutions · Bhilai, Chhattisgarh
-                            </div>
-                        </div>
-                        <div class="card-time">September 2020</div>
-                    </div>
-                </div>
-
-                <!-- Senior Secondary -->
-                <div class="card">
-                    <div class="card-header">
-                        <div>
-                            <div class="card-title">C.B.S.E Senior Secondary Education</div>
-                            <div class="card-subtitle">
-                                Sri Sankara Vidyalaya · Bhilai, Chhattisgarh
-                            </div>
-                        </div>
-                        <div class="card-time">May 2016</div>
-                    </div>
-                </div>
-
-                <!-- Higher Secondary -->
-                <div class="card">
-                    <div class="card-header">
-                        <div>
-                            <div class="card-title">C.B.S.E Higher Secondary Education</div>
-                            <div class="card-subtitle">
-                                The Aditya Birla Public School · Hirmi, Chhattisgarh
-                            </div>
-                        </div>
-                        <div class="card-time">May 2014</div>
-                    </div>
-                </div>
-
-            </details>
-        </section>
-
-
-        <!-- Awards & Certifications -->
-        <section>
-            <h2>Awards & Certifications</h2>
-
-            <!-- Awards -->
-            <details class="card">
-                <summary>
-                    <div class="card-header">
-                        <div>
-                            <div class="card-title">Awards</div>
-                            <div class="card-subtitle">Professional & Academic Achievements</div>
-                        </div>
-                    </div>
-                </summary>
-
-                <ul>
-                    <li>
-                        <strong>Team Player Award</strong> – Azure OSS Business Unit, LTIMindtree (2022)
-                    </li>
-                    <li>
-                        <strong>Optimism Award</strong> – iWin Award Ceremony, LTIMindtree (2022)
-                    </li>
-                    <li>
-                        <strong>Gracious Award</strong> – Gracious Award Ceremony, LTIMindtree (2025),
-                        for exceeding expectations and delivering high-impact results
-                    </li>
-                    <li>
-                        <strong>Secured 98.5 percentile</strong> in GATE 2020 (Graduate Aptitude Test in Engineering)
-                    </li>
-                </ul>
-            </details>
-
-            <!-- Certifications -->
-            <details class="card">
-                <summary>
-                    <div class="card-header">
-                        <div>
-                            <div class="card-title">Certifications</div>
-                            <div class="card-subtitle">Microsoft Azure & Cloud</div>
-                        </div>
-                    </div>
-                </summary>
-
-                <ul>
-                    <li><strong>AZ-204:</strong> Developing Solutions for Microsoft Azure</li>
-                    <li><strong>AI-102:</strong> Designing and Implementing an Azure AI Solution</li>
-                    <li><strong>AZ-900:</strong> Microsoft Azure Fundamentals</li>
-                    <li><strong>DP-900:</strong> Azure Data Fundamentals</li>
-                    <li><strong>GitHub Foundations Certification</strong></li>
-                </ul>
-            </details>
-        </section>
-
-
-        <!-- Resume Download -->
-        <section>
-            <h2>Resume</h2>
-            <div class="card download-card">
-                <a href="assets\Resume.pdf" download class="download-btn">Download PDF</a>
-                <a href="assets\resume_1.docx" download class="download-btn"
-                    style="background:linear-gradient(90deg,#e5e7eb,#cbd5f5);">
-                    Download DOCX
-                </a>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer>
-            <p>© 2025 Nilesh Kumar. All rights reserved.</p>
-            <p>
-                Designed & built by <strong>Nilesh Kumar</strong>.
-            </p>
-        </footer>
-
-    </main>
 </body>
 
 </html>
