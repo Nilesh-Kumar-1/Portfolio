@@ -18,6 +18,7 @@ The website showcases my projects, skills, experience, education, and certificat
 - **CSS3** – modern layout, responsive design
 - **Google Fonts (Inter)**
 - **GitHub Pages** – free static hosting
+- **Latex** - Resume is authored in LaTeX(assets/resume.tex) and exported to PDF
 
 ---
 
